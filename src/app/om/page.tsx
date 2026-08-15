@@ -1,13 +1,14 @@
 import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/Section";
-import { contact } from "@/content/site";
+import { getContact } from "@/lib/content";
 
 export const metadata = {
   title: "Om Prisfyndet",
   description: "Historien om Prisfyndet — spel- och seriebutik i Uppsala sedan 1977.",
 };
 
-export default function OmPage() {
+export default async function OmPage() {
+  const contact = await getContact();
   return (
     <>
       <PageHeader eyebrow="Om Prisfyndet" title="En pigg butik, snart 50 år" />

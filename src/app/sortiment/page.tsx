@@ -1,14 +1,15 @@
 import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/Section";
 import { CategoryGrid } from "@/components/CategoryGrid";
-import { categories } from "@/content/site";
+import { getCategories } from "@/lib/content";
 
 export const metadata = {
   title: "Sortiment",
   description: "Vad Prisfyndet säljer — serier, manga, samlarkortspel, figurspel, rollspel och brädspel.",
 };
 
-export default function SortimentPage() {
+export default async function SortimentPage() {
+  const categories = await getCategories();
   return (
     <>
       <PageHeader

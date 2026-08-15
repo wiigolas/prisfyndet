@@ -1,12 +1,13 @@
 import { PageHeader } from "@/components/PageHeader";
-import { newsPosts } from "@/content/site";
+import { getNewsPosts } from "@/lib/content";
 
 export const metadata = {
   title: "Nyheter",
   description: "Nya varor och uppdateringar från Prisfyndet.",
 };
 
-export default function NyheterPage() {
+export default async function NyheterPage() {
+  const newsPosts = await getNewsPosts();
   return (
     <>
       <PageHeader eyebrow="Nyheter" title="Nya varor och uppdateringar" />

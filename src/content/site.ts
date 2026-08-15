@@ -31,13 +31,23 @@ export const categories: Category[] = [
   { name: "Brädspel", description: "Hundratals titlar från en lång rad förlag." },
 ];
 
-export const openingHours = [
+export type OpeningHoursRow = { days: string; hours: string };
+
+export const openingHours: OpeningHoursRow[] = [
   { days: "Måndag–Fredag", hours: "11:00–19:00" },
   { days: "Lördag", hours: "11:00–17:00" },
   { days: "Söndag", hours: "Stängt" },
 ];
 
-export const contact = {
+export type Contact = {
+  address: string;
+  phone: string;
+  email: string;
+  facebook: string;
+  founded: number;
+};
+
+export const contact: Contact = {
   address: "Kungsgatan 39, Uppsala",
   phone: "018-10 66 07",
   email: "prisfyndet@gmail.com",

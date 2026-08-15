@@ -1,13 +1,14 @@
 import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/Section";
-import { contact, openingHours } from "@/content/site";
+import { getContact, getOpeningHours } from "@/lib/content";
 
 export const metadata = {
   title: "Kontakt",
   description: "Adress, öppettider och kontaktuppgifter till Prisfyndet i Uppsala.",
 };
 
-export default function KontaktPage() {
+export default async function KontaktPage() {
+  const [contact, openingHours] = await Promise.all([getContact(), getOpeningHours()]);
   return (
     <>
       <PageHeader eyebrow="Kontakt" title="Hitta till oss" />

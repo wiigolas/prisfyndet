@@ -2,14 +2,15 @@ import { PageHeader } from "@/components/PageHeader";
 import { Section } from "@/components/Section";
 import { ScheduleTable } from "@/components/ScheduleTable";
 import { Callout } from "@/components/Callout";
-import { weeklySchedule, contact } from "@/content/site";
+import { getSchedule, getContact } from "@/lib/content";
 
 export const metadata = {
   title: "Spelkvällar & turneringar",
   description: "Prisfyndets återkommande spelkvällar och turneringar i Uppsala.",
 };
 
-export default function SpelkvallarPage() {
+export default async function SpelkvallarPage() {
+  const [weeklySchedule, contact] = await Promise.all([getSchedule(), getContact()]);
   return (
     <>
       <PageHeader

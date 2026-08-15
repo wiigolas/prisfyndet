@@ -3,9 +3,14 @@ import { PageHeader } from "@/components/PageHeader";
 import { StatRow } from "@/components/StatRow";
 import { Section } from "@/components/Section";
 import { ScheduleTable } from "@/components/ScheduleTable";
-import { weeklySchedule, newsPosts, contact } from "@/content/site";
+import { getSchedule, getNewsPosts, getContact } from "@/lib/content";
 
-export default function Home() {
+export default async function Home() {
+  const [weeklySchedule, newsPosts, contact] = await Promise.all([
+    getSchedule(),
+    getNewsPosts(),
+    getContact(),
+  ]);
   const latestPost = newsPosts[0];
 
   return (
