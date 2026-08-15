@@ -11,6 +11,12 @@ export default function AdminHome() {
             Veckoschema, öppettider, sortiment och kontaktuppgifter.
           </p>
         </Link>
+        <Link href="/admin/turneringar" className="bg-surface px-5 py-5 hover:bg-surface-raised">
+          <h2 className="font-mono font-semibold text-sm mb-1.5">Turneringar</h2>
+          <p className="text-sm text-ink-soft">
+            Skapa event, sätt platstak och se vilka som anmält sig.
+          </p>
+        </Link>
         <Link href="/admin/nyheter" className="bg-surface px-5 py-5 hover:bg-surface-raised">
           <h2 className="font-mono font-semibold text-sm mb-1.5">Nyheter</h2>
           <p className="text-sm text-ink-soft">Lägg till, redigera och ta bort nyhetsinlägg.</p>

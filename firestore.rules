@@ -2,12 +2,37 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Fas 1: publikt läsbart innehåll, inga skrivningar utifrån.
-    // Fas 2: skrivningar öppnas upp för inloggad personal (Firebase Auth) via adminsidan.
-    match /{document=**} {
+    // Sidinnehåll och nyheter: publikt läsbart, redigeras bara av inloggad personal.
+    match /content/{docId} {
       allow read: if true;
-      // Fas 2: skrivningar sker via adminsidan, inloggad med Firebase Auth.
       allow write: if request.auth != null;
+    }
+
+    match /news/{docId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // Turneringar: publikt läsbara. Personal skapar/redigerar/tar bort fritt.
+    // Publika besökare får bara höja registeredCount med exakt 1 åt gången,
+    // och bara så länge det finns lediga platser — det är själva anmälan,
+    // och stoppar överbokning på serversidan även vid samtidiga anmälningar.
+    match /events/{eventId} {
+      allow read: if true;
+      allow create, delete: if request.auth != null;
+      allow update: if request.auth != null
+        || (
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['registeredCount'])
+          && request.resource.data.registeredCount == resource.data.registeredCount + 1
+          && resource.data.registeredCount < resource.data.capacity
+        );
+
+      // Anmälningar: vem som helst kan anmäla sig (skapa), men bara
+      // personal kan se listan eller ändra/ta bort en anmälan.
+      match /registrations/{regId} {
+        allow create: if true;
+        allow read, update, delete: if request.auth != null;
+      }
     }
   }
 }

@@ -10,6 +10,7 @@ import { useAuth } from "@/lib/useAuth";
 const links = [
   { href: "/admin", label: "Översikt" },
   { href: "/admin/innehall", label: "Sidinnehåll" },
+  { href: "/admin/turneringar", label: "Turneringar" },
   { href: "/admin/nyheter", label: "Nyheter" },
 ];
 
@@ -34,7 +35,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <Link
               key={link.href}
               href={link.href}
-              className={pathname === link.href ? "text-red" : "text-ink-soft hover:text-ink"}
+              className={
+                pathname === link.href || (link.href !== "/admin" && pathname.startsWith(link.href))
+                  ? "text-red"
+                  : "text-ink-soft hover:text-ink"
+              }
             >
               {link.label}
             </Link>
