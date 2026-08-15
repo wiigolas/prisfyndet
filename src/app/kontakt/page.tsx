@@ -7,6 +7,8 @@ export const metadata = {
   description: "Adress, öppettider och kontaktuppgifter till Prisfyndet i Uppsala.",
 };
 
+export const revalidate = 60;
+
 export default async function KontaktPage() {
   const [contact, openingHours] = await Promise.all([getContact(), getOpeningHours()]);
   return (

@@ -9,6 +9,8 @@ export const metadata = {
   description: "Prisfyndets återkommande spelkvällar och turneringar i Uppsala.",
 };
 
+export const revalidate = 60;
+
 export default async function SpelkvallarPage() {
   const [weeklySchedule, contact] = await Promise.all([getSchedule(), getContact()]);
   return (

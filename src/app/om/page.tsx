@@ -7,6 +7,8 @@ export const metadata = {
   description: "Historien om Prisfyndet — spel- och seriebutik i Uppsala sedan 1977.",
 };
 
+export const revalidate = 60;
+
 export default async function OmPage() {
   const contact = await getContact();
   return (

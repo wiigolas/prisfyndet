@@ -29,6 +29,8 @@ const plexMono = localFont({
   display: "swap",
 });
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Prisfyndet — spel och serier i Uppsala",
   description:

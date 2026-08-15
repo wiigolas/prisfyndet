@@ -5,6 +5,8 @@ import { Section } from "@/components/Section";
 import { ScheduleTable } from "@/components/ScheduleTable";
 import { getSchedule, getNewsPosts, getContact } from "@/lib/content";
 
+export const revalidate = 60;
+
 export default async function Home() {
   const [weeklySchedule, newsPosts, contact] = await Promise.all([
     getSchedule(),

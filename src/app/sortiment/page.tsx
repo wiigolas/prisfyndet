@@ -8,6 +8,8 @@ export const metadata = {
   description: "Vad Prisfyndet säljer — serier, manga, samlarkortspel, figurspel, rollspel och brädspel.",
 };
 
+export const revalidate = 60;
+
 export default async function SortimentPage() {
   const categories = await getCategories();
   return (
